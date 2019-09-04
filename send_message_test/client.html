@@ -11,11 +11,9 @@
 		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 		<script>
-			window.nodeRequire = require;
 			delete window.require;
 			delete window.exports;
 			delete window.module;
-
 			$(function () {
 				var socket = io();
 				$('form').submit(function(){
