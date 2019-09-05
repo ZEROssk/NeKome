@@ -8,22 +8,21 @@ const { app, BrowserWindow } = require('electron')
 let win
 
 sv.get('/', function(req, res){
-  res.sendFile(__dirname + '/client.html');
+	res.sendFile(__dirname + '/client.html');
 })
 
 sv.get('/host', function(req, res){
-  res.sendFile(__dirname + '/host.html');
+	res.sendFile(__dirname + '/host.html');
 })
 
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-      io.emit('chat message', msg);
-    });
-})
+io.on('connection', function(socket) {
+	socket.on('comment', function(data){
+		io.emit('comment', {value: data.value});
+	});
+});
 
 http.listen(port, function(){
-  console.log('listening on *:' + port);
+	console.log('listening on *:' + port);
 })
 
 function createWindow() {
@@ -36,12 +35,11 @@ function createWindow() {
 		alwaysOnTop: true
 	})
 
-	// win.setIgnoreMouseEvents(true);
-	// win.maximize();
+	win.setIgnoreMouseEvents(true);
+	win.maximize();
 
 	win.loadURL(`http://localhost:3000/host`)
-	//win.loadURL(`file://${__dirname}/host.html`)
-	//win.webContents.openDevTools()
+	win.webContents.openDevTools()
 	win.on('closed', () => {
 		win = null
 	})

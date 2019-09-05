@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<title>NeKome</title>
+	</head>
+	<body>
+		<div id="msg"></div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io();
+			//var msgArea = document.getElementById("msg");
+			socket.on('comment', function(data){
+				var dom = document.createElement('div');
+				dom.innerHTML = data.value;
+				document.getElementById("msg").appendChild(dom);
+			});
+		</script>
+	</body>
+</html>
+
