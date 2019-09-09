@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<title>NeKome</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io()
+			window.onload = function(){
+				document.getElementById("send").addEventListener("click", function(){
+					var comment = document.getElementById('c');
+					socket.emit("comment", {value: comment.value});
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<form action="">
+			<input id="c" autocomplete="off" /><button id="send">Send</button>
+		</form>
+	</body>
+</html>
+

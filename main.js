@@ -7,21 +7,21 @@ var port = process.env.PORT || 3000;
 const { app, BrowserWindow } = require('electron')
 let win
 
-sv.get('/', function(req, res){
-	res.sendFile(__dirname + '/client.html');
+sv.get('/', function(req, res) {
+	res.sendFile(__dirname + '/client/client.html');
 })
 
-sv.get('/host', function(req, res){
-	res.sendFile(__dirname + '/host.html');
+sv.get('/host', function(req, res) {
+	res.sendFile(__dirname + '/host/host.html');
 })
 
 io.on('connection', function(socket) {
-	socket.on('comment', function(data){
+	socket.on('comment', function(data) {
 		io.emit('comment', {value: data.value});
 	});
 });
 
-http.listen(port, function(){
+http.listen(port, function() {
 	console.log('listening on *:' + port);
 })
 
@@ -35,8 +35,8 @@ function createWindow() {
 		alwaysOnTop: true
 	})
 
-	win.setIgnoreMouseEvents(true);
-	win.maximize();
+	//win.setIgnoreMouseEvents(true);
+	//win.maximize();
 
 	win.loadURL(`http://localhost:3000/host`)
 	win.webContents.openDevTools()
