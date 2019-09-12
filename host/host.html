@@ -5,17 +5,19 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			var socket = io();
+			var num = 0;
 			socket.on('comment', function(data){
-				var dom = document.createElement('div');
-				dom.innerHTML = data.value;
-				document.getElementById("comment").appendChild(dom);
+				let dom = document.createElement('div');
+				dom.innerHTML = `<a id=${num=num+1} class="comment"><h1>${data.value}</h1></a><br>`;
+				document.getElementById("parent").appendChild(dom);
 
-				var elem = document.getElementById("comment");   
-				var pos = 100//window.innerWidth;
-				var id = setInterval(frame, 30);
+				var elem = document.getElementById(num);   
+				var pos = 100;//window.innerWidth;
+				var id = setInterval(frame, 50);
 				function frame() {
 					if (pos == -100) {
 						clearInterval(id);
+						document.getElementById(num).parentNode.remove()
 					} else {
 						pos--; 
 						elem.style.left = pos + "%"
@@ -27,14 +29,14 @@
 			body {
 				overflow-x: hidden;
 			}
-			#comment {
+			.comment {
 			  position: absolute;
 			  animation-timing-function: linear;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="comment"></div>
+		<div id="parent"></div>
 	</body>
 </html>
 

@@ -36,11 +36,11 @@ function createWindow() {
 		alwaysOnTop: true
 	})
 
-	//win.setIgnoreMouseEvents(true);
-	//win.maximize();
+	win.setIgnoreMouseEvents(true);
+	win.maximize();
 
 	win.loadURL(`http://localhost:3000/host`)
-	win.webContents.openDevTools()
+	//win.webContents.openDevTools()
 	win.on('closed', () => {
 		win = null
 	})
