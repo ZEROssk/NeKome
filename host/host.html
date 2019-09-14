@@ -9,16 +9,18 @@
 			var rnum = 0;
 			socket.on('comment', function(data){
 				let dom = document.createElement('div');
-				dom.innerHTML = `<a id=${num+=1} class="comment"><h1>${data.value}</h1></a><br>`;
+				dom.id = num+=1;
+				dom.className = "comment";
+				dom.textContent = data.value;
 				document.getElementById("parent").appendChild(dom);
 
 				var elem = document.getElementById(num);   
-				var pos = 100;//window.innerWidth;
+				var pos = 100;
 				var id = setInterval(frame, 50);
 				function frame() {
 					if (pos == -100) {
 						clearInterval(id);
-						document.getElementById(`${rnum+=1}`).parentNode.remove()
+						document.getElementById(`${rnum+=1}`).remove()
 					} else {
 						pos--; 
 						elem.style.left = pos + "%"
@@ -31,6 +33,7 @@
 				overflow-x: hidden;
 			}
 			.comment {
+				white-space: nowrap;
 				left: 100%;
 				position: absolute;
 			  animation-timing-function: linear;

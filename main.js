@@ -17,7 +17,11 @@ sv.get('/host', function(req, res) {
 
 io.on('connection', function(socket) {
 	socket.on('comment', function(data) {
-		io.emit('comment', {value: data.value});
+		if (typeof data.value == 'string' && data.value.length < 1000) {
+			io.emit('comment', {value: data.value});
+		} else {
+			console.log("error");
+		}
 	});
 });
 
@@ -36,11 +40,11 @@ function createWindow() {
 		alwaysOnTop: true
 	})
 
-	win.setIgnoreMouseEvents(true);
-	win.maximize();
+	//win.setIgnoreMouseEvents(true);
+	//win.maximize();
 
 	win.loadURL(`http://localhost:3000/host`)
-	//win.webContents.openDevTools()
+	win.webContents.openDevTools()
 	win.on('closed', () => {
 		win = null
 	})
