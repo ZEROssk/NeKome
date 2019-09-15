@@ -17,7 +17,7 @@ sv.get('/host', function(req, res) {
 
 io.on('connection', function(socket) {
 	socket.on('comment', function(data) {
-		if (typeof data.value == 'string' && data.value.length < 1000) {
+		if (typeof data.value == 'string' && data.value.length <= 80) {
 			io.emit('comment', {value: data.value});
 		} else {
 			console.log("error");
