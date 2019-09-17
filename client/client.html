@@ -12,11 +12,60 @@
 				});
 			}
 		</script>
+		<style>
+			*{box-sizing: border-box;}
+
+			body, html{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+				width: 100%;
+				background-color: #000033;
+				font-family: 'Arial', sans-serif;
+			}
+
+			.container{  
+				color: #fff;
+				text-transform: uppercase;
+				text-align: center;
+				font-size: 40px;
+			}
+
+			.form{
+				display: block;
+			}
+
+			.textbox{
+				position: relative;
+				width: 60%;
+				padding: 15px;
+				border: none;
+				border-radius: 5px;
+				font-size: 20px;
+				color: #a0a0a0;
+				outline: none;
+			}
+
+			.button{
+				position: relative;
+				width: 20%;
+				padding: 15px;
+				border: none;
+				border-radius: 5px;
+				font-size: 20px;
+				outline: none;
+			}
+		</style>
 	</head>
 	<body>
-		<form action="">
-			<input id="c" autocomplete="off" /><button id="send">Send</button>
-		</form>
+		<div class="container">
+			<h1>Please type comment!!!</h1>
+				<form class="form">
+					<input id="c" class="textbox" type="text" autocomplete="off">
+					<button id="send" class="button">Send</button>
+				</form>
+		</div>
 	</body>
 </html>
 
