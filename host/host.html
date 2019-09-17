@@ -7,16 +7,19 @@
 			var socket = io();
 			var num = 0;
 			var rnum = 0;
+			function positionNum(max) {
+			  return Math.floor(Math.random() * Math.floor(max));
+			}
 			socket.on('comment', function(data){
 				let dom = document.createElement('div');
 				dom.id = num+=1;
-				dom.className = "comment";
+				dom.className = `comment${positionNum(4)}`;
 				dom.textContent = data.value;
 				document.getElementById("parent").appendChild(dom);
 
-				var elem = document.getElementById(num);
-				var pos = 100;
-				var id = setInterval(frame, 50);
+				let elem = document.getElementById(num);
+				let pos = 100;
+				let id = setInterval(frame, 50);
 				function frame() {
 					if (pos == -100) {
 						clearInterval(id);
@@ -32,8 +35,34 @@
 			body {
 				overflow-x: hidden;
 			}
-			.comment {
+			.comment0 {
 				white-space: nowrap;
+				font-size: 12ex; 
+				top: 20%;
+				left: 100%;
+				position: absolute;
+			  animation-timing-function: linear;
+			}
+			.comment1 {
+				white-space: nowrap;
+				font-size: 12ex; 
+				top: 40%;
+				left: 100%;
+				position: absolute;
+			  animation-timing-function: linear;
+			}
+			.comment2 {
+				white-space: nowrap;
+				font-size: 12ex; 
+				top: 60%;
+				left: 100%;
+				position: absolute;
+			  animation-timing-function: linear;
+			}
+			.comment3 {
+				white-space: nowrap;
+				font-size: 12ex; 
+				top: 80%;
 				left: 100%;
 				position: absolute;
 			  animation-timing-function: linear;
@@ -44,4 +73,3 @@
 		<div id="parent"></div>
 	</body>
 </html>
-
