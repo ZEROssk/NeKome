@@ -19,6 +19,7 @@ io.on('connection', function(socket) {
 	socket.on('comment', function(data) {
 		if (typeof data.value == 'string' && data.value.length <= 80) {
 			io.emit('comment', {value: data.value});
+			console.log(data.value);
 		} else {
 			console.log("error");
 		}
