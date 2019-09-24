@@ -1,8 +1,10 @@
 "use strict";
-var sv = require('express')();
-var http = require('http').Server(sv);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
+const sv = require('express')();
+const http = require('http').Server(sv);
+const io = require('socket.io')(http, {
+	maxHttpBufferSize: 1000
+});
+const port = process.env.PORT || 3000;
 
 const { app, BrowserWindow } = require('electron')
 let win
