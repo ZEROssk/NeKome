@@ -17,6 +17,8 @@ sv.get('/host', function(req, res) {
 	res.sendFile(__dirname + '/host/host.html');
 })
 
+io.set('log level', 3);
+
 io.on('connection', function(socket) {
 	socket.on('comment', function(data) {
 		if (typeof data.value == 'string' && data.value.length <= 80) {
